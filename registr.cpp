@@ -46,13 +46,11 @@ void Registr::on_pushButton_clicked()
     query.bindValue(":login", login);
     query.bindValue(":pass", password);
 
-    // 3. Выполняем запрос
     if (query.exec()) {
         QMessageBox::information(this, "Успех", "Регистрация успешно завершена!");
         this->close(); // Закрываем окно регистрации после успеха
     } else {
-        // Если логин уже занят, SQLite вернет ошибку, так как у нас стоит UNIQUE
-        if (query.lastError().nativeErrorCode() == "19") { // 19 — код CONSTRAINT_UNIQUE в SQLite
+        if (query.lastError().nativeErrorCode() == "19") {
             QMessageBox::warning(this, "Ошибка", "Пользователь с таким логином уже существует!");
         } else {
             QMessageBox::critical(this, "Ошибка БД", "Не удалось зарегистрировать: " + query.lastError().text());

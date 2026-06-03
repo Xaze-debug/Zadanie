@@ -4,6 +4,7 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "registr.h"
+#include "vxod.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
@@ -41,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
         this->move(x,y);
     }
     /*connect(ui->menu->actions().at(0), &QAction::triggered,this,[this]() {
-        QMessageBox::information(this, "О программе", "РАботает вроде");
+        QMessageBox::information(this, "О программе", "арбуз");
     });*/
 }
 
@@ -73,6 +74,17 @@ void MainWindow::on_pushButton_3_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    Vxod *regWindow = new Vxod(nullptr);
 
+    regWindow->setWindowFlags(Qt::Window);
+
+    regWindow->setWindowModality(Qt::ApplicationModal);
+
+    regWindow->setAttribute(Qt::WA_DeleteOnClose);
+
+    connect(regWindow, &Vxod::destroyed, this, &MainWindow::show);
+    this->hide();
+
+    regWindow->show();
 }
 
