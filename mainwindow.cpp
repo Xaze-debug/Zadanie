@@ -5,10 +5,6 @@
 #include <QMessageBox>
 #include "registr.h"
 #include "vxod.h"
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlError>
-
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -16,34 +12,14 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("registrazia.db");
-
-    if (db.open()) {
-        QSqlQuery query;
-        QString createTableQuery =
-            "CREATE TABLE IF NOT EXISTS users ("
-            "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-            "username TEXT UNIQUE NOT NULL, "
-            "password TEXT NOT NULL"
-            ");";
-        if (!query.exec(createTableQuery)) {
-            qDebug() << "Ошибка создания таблицы:" << query.lastError().text();
-        }
-    } else {
-        qDebug() << "Не удалось подключить базу данных:" << db.lastError().text();
-    }
 
     QScreen *screen = QApplication::primaryScreen();
     if (screen) {
         QRect screenGeometry = screen->availableGeometry();
-        int x = (screenGeometry.width() - this->width())/2;
-        int y = (screenGeometry.height() - this->height())/2;
-        this->move(x,y);
+        int x = (screenGeometry.width() - this->width()) / 2;
+        int y = (screenGeometry.height() - this->height()) / 2;
+        this->move(x, y);
     }
-    /*connect(ui->menu->actions().at(0), &QAction::triggered,this,[this]() {
-        QMessageBox::information(this, "О программе", "арбуз");
-    });*/
 }
 
 MainWindow::~MainWindow()
@@ -56,35 +32,22 @@ void MainWindow::on_pushButton_clicked()
     this->close();
 }
 
-
-
 void MainWindow::on_pushButton_3_clicked()
 {
-    Registr *regWindow = new Registr(nullptr);
-
+    Registr *regWindow = new Registr(this);
     regWindow->setWindowFlags(Qt::Window);
-
-    regWindow->setWindowModality(Qt::ApplicationModal);
-
     regWindow->setAttribute(Qt::WA_DeleteOnClose);
 
+    this->hide();
     regWindow->show();
 }
-
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    Vxod *regWindow = new Vxod(nullptr);
+    Vxod *loginWindow = new Vxod(this);
+    loginWindow->setWindowFlags(Qt::Window);
+    loginWindow->setAttribute(Qt::WA_DeleteOnClose);
 
-    regWindow->setWindowFlags(Qt::Window);
-
-    regWindow->setWindowModality(Qt::ApplicationModal);
-
-    regWindow->setAttribute(Qt::WA_DeleteOnClose);
-
-    connect(regWindow, &Vxod::destroyed, this, &MainWindow::show);
     this->hide();
-
-    regWindow->show();
+    loginWindow->show();
 }
-
