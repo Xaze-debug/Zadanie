@@ -1,11 +1,16 @@
 #include "glavmenu.h"
 #include "ui_glavmenu.h"
 
-GlavMenu::GlavMenu(QWidget *parent)
+GlavMenu::GlavMenu(QString login, QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::GlavMenu)
+    , m_login(login)
 {
     ui->setupUi(this);
+
+    if (!m_login.isEmpty()){
+        ui->label->setText("Привет, "+ m_login+"\nНачнём работать?");
+    }
 }
 
 GlavMenu::~GlavMenu()

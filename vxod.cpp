@@ -40,7 +40,7 @@ void Vxod::on_pushButton_clicked()
 
         this->close();
 
-        GlavMenu *menuWindow = new GlavMenu(nullptr);
+        GlavMenu *menuWindow = new GlavMenu(login);
         menuWindow->setWindowFlags(Qt::Window);
         menuWindow->setWindowModality(Qt::ApplicationModal);
         menuWindow->setAttribute(Qt::WA_DeleteOnClose);
