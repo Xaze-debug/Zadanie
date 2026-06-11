@@ -6,17 +6,18 @@
 
 class BdMan {
 public:
+    //Синглтон
     static BdMan& instance() {
         static BdMan _instance;
         return _instance;
     }
-
+    //Публичные методы
     bool initDatabase(const QString& dbName);
     bool registerUser(const QString& login, const QString& password);
     bool loginUser(const QString& login, const QString& password);
-    void disconnect();
+    void disconnect(); // Безопасное закрытие соединения с базой данных
 
-
+    //Защита Синглтона от копирования
     BdMan(const BdMan&) = delete;
     BdMan& operator=(const BdMan&) = delete;
     //Заопинанре входа
@@ -25,11 +26,12 @@ public:
 
 private:
     BdMan() = default;
-    ~BdMan();
+    ~BdMan();// Деструктор
     bool createTables();
 
+    // Объект Qt, который хранит само активное соединение с базой данных
     QSqlDatabase m_db;
-
+    //юзнрайди по умолчанию
     int m_currentUserId = -1;
 };
 

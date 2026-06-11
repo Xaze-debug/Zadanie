@@ -39,7 +39,7 @@
     <string>Введите ваш пароль</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="registrButt">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -52,7 +52,7 @@
     <string>Зарегистрироваться</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="vixodButt">
    <property name="geometry">
     <rect>
      <x>150</x>

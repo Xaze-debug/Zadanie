@@ -34,7 +34,7 @@ bool BdMan::createTables() {
     }
     return true;
 }
-
+//регистрация
 bool BdMan::registerUser(const QString& login, const QString& password) {
     QSqlQuery query(m_db);
     query.prepare("INSERT INTO users (username, password) VALUES (:login, :pass)");
@@ -47,7 +47,7 @@ bool BdMan::registerUser(const QString& login, const QString& password) {
 
     return query.exec();
 }
-
+//вход
 bool BdMan::loginUser(const QString& login, const QString& password) {
     QSqlQuery query(m_db);
     query.prepare("SELECT id FROM users WHERE username = :login AND password = :pass");
@@ -58,6 +58,7 @@ bool BdMan::loginUser(const QString& login, const QString& password) {
     query.bindValue(":login", login);
     query.bindValue(":pass", hashedPassword);
 
+    //проверка на существование
     if (query.exec() && query.next()) {
         m_currentUserId = query.value(0).toInt();
         return true;

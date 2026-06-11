@@ -16,15 +16,8 @@ Vxod::~Vxod()
 {
     delete ui;
 }
-void Vxod::on_pushButton_2_clicked()
-{
-    if (this->parentWidget()) {
-        this->parentWidget()->show();
-    }
-    this->close();
-}
 
-void Vxod::on_pushButton_clicked()
+void Vxod::on_vxodButton_clicked()
 {
     QString login = ui->lineEdit->text().trimmed();
     QString password = ui->lineEdit_2->text().trimmed();
@@ -35,6 +28,7 @@ void Vxod::on_pushButton_clicked()
     }
 
     if (BdMan::instance().loginUser(login, password)) {
+
 
         QMessageBox::information(this, "Успех", "Добро пожаловать, " + login + "!");
 
@@ -50,3 +44,13 @@ void Vxod::on_pushButton_clicked()
         QMessageBox::warning(this, "Ошибка", "Неверный логин или пароль!");
     }
 }
+
+
+void Vxod::on_vixodButton_clicked()
+{
+    if (this->parentWidget()) {
+        this->parentWidget()->show();
+    }
+    this->close();
+}
+

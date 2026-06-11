@@ -24,15 +24,8 @@ Registr::~Registr()
     delete ui;
 }
 
-void Registr::on_pushButton_2_clicked()
-{
-    if (this->parentWidget()) {
-        this->parentWidget()->show();
-    }
-    this->close();
-}
-
-void Registr::on_pushButton_clicked()
+//Регистрация пользователя
+void Registr::on_registrButt_clicked()
 {
     QString login = ui->lineEdit->text().trimmed();
     QString password = ui->lineEdit_2->text().trimmed();
@@ -44,8 +37,21 @@ void Registr::on_pushButton_clicked()
 
     if (BdMan::instance().registerUser(login, password)) {
         QMessageBox::information(this, "Успех", "Регистрация успешно завершена!");
+        if (this->parentWidget()) {
+            this->parentWidget()->show();
+        }
         this->close();
     } else {
         QMessageBox::warning(this, "Ошибка", "Не удалось зарегистрировать. Возможно, такой логин уже занят.");
     }
 }
+
+//Прост выход
+void Registr::on_vixodButt_clicked()
+{
+    if (this->parentWidget()) {
+        this->parentWidget()->show();
+    }
+    this->close();
+}
+

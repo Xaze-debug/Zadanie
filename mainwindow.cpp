@@ -26,13 +26,19 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-void MainWindow::on_pushButton_clicked()
+//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход//Вход
+void MainWindow::on_VoitiButt_clicked()
 {
-    this->close();
+    Vxod *loginWindow = new Vxod(this);
+    loginWindow->setWindowFlags(Qt::Window);
+    loginWindow->setAttribute(Qt::WA_DeleteOnClose);
+
+    this->hide();
+    loginWindow->show();
 }
 
-void MainWindow::on_pushButton_3_clicked()
+//Регистрация//Регистрация//Регистрация//Регистрация//Регистрация//Регистрация//Регистрация//Регистрация//Регистрация//Регистрация//Регистрация
+void MainWindow::on_RegistrButt_clicked()
 {
     Registr *regWindow = new Registr(this);
     regWindow->setWindowFlags(Qt::Window);
@@ -42,12 +48,9 @@ void MainWindow::on_pushButton_3_clicked()
     regWindow->show();
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    Vxod *loginWindow = new Vxod(this);
-    loginWindow->setWindowFlags(Qt::Window);
-    loginWindow->setAttribute(Qt::WA_DeleteOnClose);
 
-    this->hide();
-    loginWindow->show();
+void MainWindow::on_VixodButt_clicked()
+{
+    this->close();
 }
+

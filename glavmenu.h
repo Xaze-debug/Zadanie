@@ -17,7 +17,10 @@ public:
     ~GlavMenu();
 
 private slots:
-    void on_pushButton_clicked();
+
+    void on_SaveButt_clicked();
+
+    void on_VixodButt_clicked();
 
 private:
     Ui::GlavMenu *ui;

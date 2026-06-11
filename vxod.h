@@ -16,9 +16,10 @@ public:
     ~Vxod();
 
 private slots:
-    void on_pushButton_2_clicked();
 
-    void on_pushButton_clicked();
+    void on_vxodButton_clicked();
+
+    void on_vixodButton_clicked();
 
 private:
     Ui::Vxod *ui;
