@@ -41,7 +41,7 @@ void Vxod::on_vxodButton_clicked()
         menuWindow->show();
 
     } else {
-        QMessageBox::warning(this, "Ошибка", "Неверный логин или пароль!");
+        QMessageBox::warning(this, "Ошибка", "Неверный логин или пароль!\nВнимание: Регистр букв важен");
     }
 }
 

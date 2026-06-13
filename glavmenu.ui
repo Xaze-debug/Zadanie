@@ -65,6 +65,71 @@
     </rect>
    </property>
   </widget>
+  <widget class="QPushButton" name="RazloginButt">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>310</y>
+     <width>151</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Выйти на экран входа</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="BalanceLabe">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>20</y>
+     <width>49</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="DoxodButt">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>60</y>
+     <width>111</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Добавить доход</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="RasxodButt">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>100</y>
+     <width>111</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Добавить расход</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="TableButt">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>140</y>
+     <width>131</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Денежная таблица</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

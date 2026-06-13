@@ -22,6 +22,14 @@ private slots:
 
     void on_VixodButt_clicked();
 
+    void on_RazloginButt_clicked();
+
+    void on_DoxodButt_clicked();
+
+    void on_RasxodButt_clicked();
+
+    void on_TableButt_clicked();
+
 private:
     Ui::GlavMenu *ui;
     QString m_login;

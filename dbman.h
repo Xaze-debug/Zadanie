@@ -15,7 +15,8 @@ public:
     bool initDatabase(const QString& dbName);
     bool registerUser(const QString& login, const QString& password);
     bool loginUser(const QString& login, const QString& password);
-    void disconnect(); // Безопасное закрытие соединения с базой данных
+    void disconnect();
+    void razlogin();
 
     //Защита Синглтона от копирования
     BdMan(const BdMan&) = delete;

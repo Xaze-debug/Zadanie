@@ -27,6 +27,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         vxod.h vxod.cpp vxod.ui
         glavmenu.h glavmenu.cpp glavmenu.ui
         dbman.h dbman.cpp
+        doxod.h doxod.cpp doxod.ui
+        rasxot.h rasxot.cpp rasxot.ui
+        table.h table.cpp table.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET finansi APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

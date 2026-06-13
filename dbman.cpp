@@ -66,6 +66,10 @@ bool BdMan::loginUser(const QString& login, const QString& password) {
     m_currentUserId = -1;
     return false;
 }
+//РАзлогин
+void BdMan::razlogin(){
+    this->m_currentUserId = -1;
+}
 
 void BdMan::disconnect() {
     QString connectionName = QSqlDatabase::defaultConnection;
