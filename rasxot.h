@@ -14,6 +14,9 @@ class rasxot : public QDialog
 public:
     explicit rasxot(QWidget *parent = nullptr);
     ~rasxot();
+    double getAmount();
+    QString getvid();
+    QString getperiod();
 
 private:
     Ui::rasxot *ui;

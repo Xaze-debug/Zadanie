@@ -12,3 +12,15 @@ rasxot::~rasxot()
 {
     delete ui;
 }
+
+double rasxot::getAmount(){
+    return ui->Linerasxot->text().toDouble();
+}
+
+QString rasxot::getvid(){
+    return ui->BoxVid->currentText();
+}
+
+QString rasxot::getperiod(){
+    return ui->Boxperiod->currentText();
+}

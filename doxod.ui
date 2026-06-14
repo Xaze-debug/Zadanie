@@ -39,6 +39,140 @@
     <string>Отмена</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="LineDoxod">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>81</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Сумма</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="BoxVid">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>60</y>
+     <width>91</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Зарплата</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Подарок</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Выигрыш</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Займ/Кредит</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Иное...</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>40</y>
+     <width>61</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Вид дохода</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="BoxPeriod">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>60</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Разовый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В час</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В сутки</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В 7 дней</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В месяц</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В 6 месяцев</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В 12 месяцев</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Иное...</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>40</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Периодичность</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>

@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    if (!BdMan::instance().initDatabase("database.db")) {
+    if (!BdMan::instance().initDatabase("finansi_v2.db")) {
         qCritical() << "Не удалось запустить приложение без БД!";
         return -1;
     }

@@ -55,8 +55,11 @@ void GlavMenu::on_DoxodButt_clicked()
     Doxod plusdoxodWin(this);
     int result = plusdoxodWin.exec();
     if (result == QDialog::Accepted) {
-        // Здесь в будущем забираются данные из полей и будут писаться в БД
-
+        //Данные передаются бд
+        double amount = plusdoxodWin.getAmount();
+        QString Vid = plusdoxodWin.getVid();
+        QString period = plusdoxodWin.getperiod();
+        BdMan::instance().addTransaction("income",amount, Vid, period);
     } else if (result == QDialog::Rejected) {
         // Ничего не сохраняем, просто фиксируем закрытие
     }
@@ -68,8 +71,10 @@ void GlavMenu::on_RasxodButt_clicked()
     rasxot plusrasxotWin(this);
     int result = plusrasxotWin.exec();
     if (result == QDialog::Accepted) {
-        // Здесь в будущем забираются данные из полей и будут писаться в БД
-
+        double amount = plusrasxotWin.getAmount();
+        QString Vid = plusrasxotWin.getvid();
+        QString period = plusrasxotWin.getperiod();
+        BdMan::instance().addTransaction("expense",amount, Vid, period);
     } else if (result == QDialog::Rejected) {
         // Ничего не сохраняем, просто фиксируем закрытие
     }
@@ -82,6 +87,7 @@ void GlavMenu::on_TableButt_clicked()
     int result = tableWin.exec();
     if (result == QDialog::Accepted) {
         // Здесь в будущем забираются данные из полей и будут писаться в БД
+
 
     } else if (result == QDialog::Rejected) {
         // Ничего не сохраняем, просто фиксируем закрытие

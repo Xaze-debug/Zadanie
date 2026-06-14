@@ -17,10 +17,15 @@ public:
     bool loginUser(const QString& login, const QString& password);
     void disconnect();
     void razlogin();
+    bool addTransaction(const QString& type,double amount,const QString& category,const QString& period);
 
     //Защита Синглтона от копирования
     BdMan(const BdMan&) = delete;
     BdMan& operator=(const BdMan&) = delete;
+    //Возвращение БД для таблицы
+    QSqlDatabase getDB(){
+        return m_db;
+    }
     //Заопинанре входа
     int getCurrentUserId() const { return m_currentUserId; }
     void logout() { m_currentUserId = -1; }

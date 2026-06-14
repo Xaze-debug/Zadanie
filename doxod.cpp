@@ -12,3 +12,15 @@ Doxod::~Doxod()
 {
     delete ui;
 }
+
+double Doxod::getAmount(){
+    return ui->LineDoxod->text().toDouble();
+}
+
+QString Doxod::getVid(){
+    return ui->BoxVid->currentText();
+}
+
+QString Doxod::getperiod(){
+    return ui->BoxPeriod->currentText();
+}

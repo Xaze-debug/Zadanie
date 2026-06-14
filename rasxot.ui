@@ -6,18 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>240</width>
-    <height>320</height>
+    <width>408</width>
+    <height>204</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="acButtras">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>280</y>
+     <y>170</y>
      <width>75</width>
      <height>24</height>
     </rect>
@@ -26,11 +26,11 @@
     <string>Добавить</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="delButtras">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>280</y>
+     <x>90</x>
+     <y>170</y>
      <width>75</width>
      <height>24</height>
     </rect>
@@ -39,11 +39,170 @@
     <string>Отмена</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="Linerasxot">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>91</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>70</y>
+     <width>49</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Сумма</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="BoxVid">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>90</y>
+     <width>101</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Оплата электричества</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Оплата воды</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Оплата газа</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Оплата вывоза мусора</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Аренда жилья</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Ипотека</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Кредит</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Покупка еды, средств гигиены и одежды</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Расходы на бензин/Расходы на общественный транспорт</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Иное...</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="Boxperiod">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>90</y>
+     <width>91</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Разовый</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В час</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В сутки</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В 7 дней</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В месяц</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В 6 месяцев</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>В 12 месяцев</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Иное...</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>70</y>
+     <width>49</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Вид</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>70</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Периодичность</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton</sender>
+   <sender>acButtras</sender>
    <signal>clicked()</signal>
    <receiver>rasxot</receiver>
    <slot>accept()</slot>
@@ -59,7 +218,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_2</sender>
+   <sender>delButtras</sender>
    <signal>clicked()</signal>
    <receiver>rasxot</receiver>
    <slot>reject()</slot>
@@ -71,6 +230,38 @@
     <hint type="destinationlabel">
      <x>81</x>
      <y>256</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>acButtras</sender>
+   <signal>clicked()</signal>
+   <receiver>rasxot</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>46</x>
+     <y>185</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>12</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>delButtras</sender>
+   <signal>clicked()</signal>
+   <receiver>rasxot</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>127</x>
+     <y>181</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>205</x>
+     <y>144</y>
     </hint>
    </hints>
   </connection>

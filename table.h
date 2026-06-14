@@ -2,6 +2,7 @@
 #define TABLE_H
 
 #include <QDialog>
+#include <QSqlQueryModel>
 
 namespace Ui {
 class Table;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::Table *ui;
+    QSqlQueryModel *m_model;
 };
 
 #endif // TABLE_H

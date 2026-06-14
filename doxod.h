@@ -14,6 +14,9 @@ class Doxod : public QDialog
 public:
     explicit Doxod(QWidget *parent = nullptr);
     ~Doxod();
+    double getAmount();
+    QString getVid();
+    QString getperiod();
 
 private:
     Ui::Doxod *ui;

@@ -18,9 +18,13 @@ bool BdMan::initDatabase(const QString& dbName) {
     return createTables();
 }
 
+
+
+//СОздание таблицы
 bool BdMan::createTables() {
     QSqlQuery query(m_db);
-    const QString createTableQuery = R"(
+
+    QString createUsers = R"(
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE NOT NULL,
@@ -28,12 +32,32 @@ bool BdMan::createTables() {
         );
     )";
 
-    if (!query.exec(createTableQuery)) {
-        qCritical() << "Ошибка создания таблицы:" << query.lastError().text();
+    if (!query.exec(createUsers)) {
+        qCritical() << "Ошибка создания таблицы users:" << query.lastError().text();
         return false;
     }
+
+    QString createTransactions = R"(
+        CREATE TABLE IF NOT EXISTS transactions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            type TEXT NOT NULL,
+            amount REAL NOT NULL,
+            category TEXT NOT NULL,
+            period TEXT NOT NULL
+        );
+    )";
+
+    if (!query.exec(createTransactions)) {
+        qCritical() << "Ошибка создания таблицы transactions:" << query.lastError().text();
+        return false;
+    }
+
     return true;
 }
+
+
+
 //регистрация
 bool BdMan::registerUser(const QString& login, const QString& password) {
     QSqlQuery query(m_db);
@@ -47,6 +71,35 @@ bool BdMan::registerUser(const QString& login, const QString& password) {
 
     return query.exec();
 }
+
+//Добавление дохода/Расхода
+bool BdMan::addTransaction(const QString& type,double amount,const QString& category,const QString& period){
+    if (m_currentUserId == -1) {
+        qWarning() << "Попытка добавить операцию без авторизации!";
+        return false;
+    }
+
+    QSqlQuery pum(m_db);
+    pum.prepare("INSERT INTO transactions (user_id, type, amount, category, period) VALUES (:user_id, :type, :amount, :category, :period)");
+
+    pum.bindValue(":user_id", m_currentUserId);
+    pum.bindValue(":type", type);
+    pum.bindValue(":amount", amount);
+    pum.bindValue(":category", category);
+    pum.bindValue(":period", period);
+
+    bool success = pum.exec();
+    if (!success) {
+        qCritical() << "Ошибка вставки транзакции:" << pum.lastError().text();
+    } else {
+        qDebug() << "Транзакция успешно добавлена!";
+    }
+    return success;
+}
+
+
+
+
 //вход
 bool BdMan::loginUser(const QString& login, const QString& password) {
     QSqlQuery query(m_db);
@@ -72,11 +125,13 @@ void BdMan::razlogin(){
 }
 
 void BdMan::disconnect() {
-    QString connectionName = QSqlDatabase::defaultConnection;
+   // QString connectionName = QSqlDatabase::defaultConnection;
     if (m_db.isOpen()) {
         m_db.close();
     }
-    QSqlDatabase::removeDatabase(connectionName);
+    //QSqlDatabase::removeDatabase(connectionName);
+
+    //если я эти строчки вставлю синглтон сдохнет после отработки в main
 }
 
 BdMan::~BdMan() {
