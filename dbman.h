@@ -18,6 +18,10 @@ public:
     void disconnect();
     void razlogin();
     bool addTransaction(const QString& type,double amount,const QString& category,const QString& period);
+    double getCurrentBalance();// Доходы минус Расходы за всё время для текущего юзера
+    double getMonthExpenses();// Расходы за текущий месяц
+    double getYearExpenses(); // Расходы за текущий год
+
 
     //Защита Синглтона от копирования
     BdMan(const BdMan&) = delete;

@@ -16,6 +16,7 @@ GlavMenu::GlavMenu(QString login, QWidget *parent)
     if (!m_login.isEmpty()){
         ui->label->setText("Привет, "+ m_login+"\nНачнём работать?");
     }
+    updateStatistics();
 }
 
 GlavMenu::~GlavMenu()
@@ -60,6 +61,7 @@ void GlavMenu::on_DoxodButt_clicked()
         QString Vid = plusdoxodWin.getVid();
         QString period = plusdoxodWin.getperiod();
         BdMan::instance().addTransaction("income",amount, Vid, period);
+        updateStatistics();
     } else if (result == QDialog::Rejected) {
         // Ничего не сохраняем, просто фиксируем закрытие
     }
@@ -75,8 +77,31 @@ void GlavMenu::on_RasxodButt_clicked()
         QString Vid = plusrasxotWin.getvid();
         QString period = plusrasxotWin.getperiod();
         BdMan::instance().addTransaction("expense",amount, Vid, period);
+        updateStatistics();
     } else if (result == QDialog::Rejected) {
         // Ничего не сохраняем, просто фиксируем закрытие
+    }
+}
+//Запись сумм в лейблы
+void GlavMenu::updateStatistics() {
+    // Получаем доступ к синглтону нашей базы данных
+    BdMan& db = BdMan::instance();
+
+    // Вытаскиваем посчитанные базой значения
+    double balance = db.getCurrentBalance();
+    double monthExp = db.getMonthExpenses();
+    double yearExp = db.getYearExpenses();
+
+    // Записываем их в лейблы (ВНИМАНИЕ: замени имена лейблов на свои реальные!)
+    ui->labelBalance->setText("Текущий баланс: " + QString::number(balance, 'f', 2) + " ₽");
+    ui->labelMonth->setText("Траты за месяц: " + QString::number(monthExp, 'f', 2) + " ₽");
+    ui->labelYear->setText("Траты за год: " + QString::number(yearExp, 'f', 2) + " ₽");
+
+    // Небольшая визуальная фишка: красим баланс в зависимости от того, в плюсе юзер или в минусе
+    if (balance < 0) {
+        ui->labelBalance->setStyleSheet("color: red; font-weight: bold;");
+    } else {
+        ui->labelBalance->setStyleSheet("color: green; font-weight: bold;");
     }
 }
 
@@ -85,12 +110,8 @@ void GlavMenu::on_TableButt_clicked()
 {
     Table tableWin(this);
     int result = tableWin.exec();
-    if (result == QDialog::Accepted) {
-        // Здесь в будущем забираются данные из полей и будут писаться в БД
-
-
-    } else if (result == QDialog::Rejected) {
-        // Ничего не сохраняем, просто фиксируем закрытие
-    }
+    // Здесь не нужно ничего забирать и писать в БД!
 }
+
+
 

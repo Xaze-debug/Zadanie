@@ -15,6 +15,7 @@ class GlavMenu : public QWidget
 public:
     explicit GlavMenu(QString login="",QWidget *parent = nullptr);
     ~GlavMenu();
+void updateStatistics();
 
 private slots:
 

@@ -44,7 +44,8 @@ bool BdMan::createTables() {
             type TEXT NOT NULL,
             amount REAL NOT NULL,
             category TEXT NOT NULL,
-            period TEXT NOT NULL
+            period TEXT NOT NULL,
+            tx_date TEXT DEFAULT (date('now'))
         );
     )";
 
@@ -124,6 +125,64 @@ void BdMan::razlogin(){
     this->m_currentUserId = -1;
 }
 
+//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм
+double BdMan::getCurrentBalance() {
+    if (m_currentUserId == -1) return 0.0;
+
+    QSqlQuery query(m_db);
+    double incomes = 0.0;
+    double expenses = 0.0;
+
+    // 1. Считаем все доходы пользователя
+    // ВНИМАНИЕ: Если у тебя в БД слово "Доход" пишется иначе (например, "income"), замени его здесь
+    query.prepare("SELECT SUM(amount) FROM transactions WHERE user_id = :user_id AND type = 'income'");
+    query.bindValue(":user_id", m_currentUserId);
+    if (query.exec() && query.next()) {
+        incomes = query.value(0).toDouble();
+    }
+
+    // 2. Считаем все расходы пользователя
+    // ВНИМАНИЕ: Если в БД пишется "expense", замени "Расход" на "expense"
+    query.prepare("SELECT SUM(amount) FROM transactions WHERE user_id = :user_id AND type = 'expense'");
+    query.bindValue(":user_id", m_currentUserId);
+    if (query.exec() && query.next()) {
+        expenses = query.value(0).toDouble();
+    }
+
+    return incomes - expenses;
+}
+
+
+double BdMan::getMonthExpenses() {
+    if (m_currentUserId == -1) return 0.0;
+
+    QSqlQuery query(m_db);
+    query.prepare("SELECT SUM(amount) FROM transactions WHERE user_id = :user_id AND type = 'expense' "
+                  "AND strftime('%m', tx_date) = strftime('%m', 'now') "
+                  "AND strftime('%Y', tx_date) = strftime('%Y', 'now')");
+    query.bindValue(":user_id", m_currentUserId);
+
+    if (query.exec() && query.next()) {
+        return query.value(0).toDouble();
+    }
+    return 0.0;
+}
+
+double BdMan::getYearExpenses() {
+    if (m_currentUserId == -1) return 0.0;
+
+    QSqlQuery query(m_db);
+    query.prepare("SELECT SUM(amount) FROM transactions WHERE user_id = :user_id AND type = 'expense' "
+                  "AND strftime('%Y', tx_date) = strftime('%Y', 'now')");
+    query.bindValue(":user_id", m_currentUserId);
+
+    if (query.exec() && query.next()) {
+        return query.value(0).toDouble();
+    }
+    return 0.0;
+}
+//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм//Расчёты сумм
+
 void BdMan::disconnect() {
    // QString connectionName = QSqlDatabase::defaultConnection;
     if (m_db.isOpen()) {
@@ -133,6 +192,8 @@ void BdMan::disconnect() {
 
     //если я эти строчки вставлю синглтон сдохнет после отработки в main
 }
+
+
 
 BdMan::~BdMan() {
     disconnect();
